@@ -8,7 +8,7 @@ class Stack
   class UnderflowError < StandardError; end
 
   def initialize
-    @list = Linked_list.new
+    @list = LinkedList.new
     @size = 0
   end
 
