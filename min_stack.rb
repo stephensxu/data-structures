@@ -47,17 +47,3 @@ class MinStack < Stack
     empty? ? -Float::INFINITY : @list.head.value[1]
   end
 end
-
-a = MinStack.new
-p a.min
-a.push(Node(1))
-a.push(Node(2))
-a.push(Node(-1))
-a.push(Node(-10))
-a.push(Node(8))
-a.list.each { |item| p item }
-p a.peek
-p a.min
-a.pop
-p a.peek
-p a.min
