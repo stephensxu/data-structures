@@ -25,38 +25,27 @@ class BinaryTree
   end
 
   def each(&block)
+    self.pre_order(&block)
   end
 
   # Implement pre-order traversal of the tree
   def pre_order(&block)
-    if self.value
-      block.call(self.value)
-    elsif self.left
-      block.call(self.left)
-    elsif self.right
-      block.call(self.right)
-    end
+    block.call(self.value)
+    self.left.pre_order(&block)  if self.left
+    self.right.pre_order(&block) if self.right
   end
 
   # Implement in-order traversal of the tree
   def in_order(&block)
-    if self.left
-      block.call(self.left)
-    elsif self.value
-      block.call(self.value)
-    elsif self.right
-      block.call(self.right)
-    end
+    self.left.in_order(&block)  if self.left
+    block.call(self.value)
+    self.right.in_order(&block) if self.right
   end
 
   # Implement post-order traversal of the tree
   def post_order(&block)
-    if self.left
-      block.call(self.left)
-    elsif self.right
-      block.call(self.right)
-    elsif self.value
-      block.call(self.value)
-    end
+    self.right.post_order(&block) if self.right
+    self.left.post_order(&block)  if self.left
+    block.call(self.value)
   end
 end
