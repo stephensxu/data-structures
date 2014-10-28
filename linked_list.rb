@@ -67,7 +67,7 @@ class Node
   # Insert +value+ before this Node and return new Node
   def insert_before(value)
     node = Node(value)
-    @next = node
+    node.next = self
     node
   end
 
@@ -75,7 +75,7 @@ class Node
   # Insert +value+ after this Node and return new Node
   def insert_after(value)
     node = Node(value)
-    node.next = self
+    @next = node
     node
   end
 
