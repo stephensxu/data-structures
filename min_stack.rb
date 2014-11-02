@@ -16,7 +16,7 @@ class MinStack < Stack
 
   # Places +item+ on the top of the stack
   def push(item)
-    @min_value = [item.value.to_i, self.min_value].min
+    @min_value = [item, self.min_value].min
     @list.unshift([item, @min_value])
   end
 
@@ -28,7 +28,7 @@ class MinStack < Stack
 
   # Return the item on the top of the stack without removing it
   def peek
-    @list.head.value[0].value
+    @list.head.value[0]
   end
 
   # Return true if the stack is empty and false otherwise
