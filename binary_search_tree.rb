@@ -9,4 +9,27 @@ require_relative 'binary_tree'
 #   empty?              O(1) time
 
 class BinarySearchTree < BinaryTree
+
+  def insert(value)
+    if value > self.value
+      self.right ? self.right.insert(value) : self.right = BinarySearchTree.new(value)
+    else
+      self.left ? self.left.insert(value) : self.left = BinarySearchTree.new(value)
+    end
+  end
+
+  def include?(value)
+    return true if self.value == value
+    if value > self.value
+      self.right ? self.right.include?(value) : false
+    else
+      self.left ? self.left.include?(value) : false
+    end
+  end
+
+  def remove(value)
+  end
+
+  def empty?
+  end
 end
