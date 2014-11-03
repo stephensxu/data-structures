@@ -41,7 +41,19 @@ class BinarySearchTree < BinaryTree
   end
 
   def remove(value)
-    raise "#{value} is not found in this tree" unless self.include?(value)
+    if self.left.value == value
+      if self.left.left && !self.left.right
+        self.left == self.left.left
+      elsif self.left.right && !self.left.left
+        self.left == self.left.right
+      end
+    elsif self.right.value == value
+      if self.right.left && !self.right.right
+        self.right == self.right.left
+      elsif self.right.right && !self.right.left
+        self.right == self.right.right
+      end
+    end
   end
 
   def empty?
@@ -53,5 +65,5 @@ test.insert(2)
 test.insert(-10)
 test.insert(8)
 test.insert(99)
-p test.find(99)
+p test.remove(8)
 
