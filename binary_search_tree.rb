@@ -10,6 +10,10 @@ require_relative 'binary_tree'
 
 class BinarySearchTree < BinaryTree
 
+  def initialize(value)
+    super(value)
+  end
+
   def insert(value)
     if value > self.value
       self.right ? self.right.insert(value) : self.right = BinarySearchTree.new(value)
