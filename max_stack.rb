@@ -17,7 +17,7 @@ class MaxStack < Stack
   # Places +item+ on the top of the stack
   def push(item)
     @max_value = [item, self.max_value].max
-    @list.unshift([item, @max_value])
+    super([item, @max_value])
   end
 
   # Removes the item on the top of the stack and returns it.

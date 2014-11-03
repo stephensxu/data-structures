@@ -17,7 +17,7 @@ class MinStack < Stack
   # Places +item+ on the top of the stack
   def push(item)
     @min_value = [item, self.min_value].min
-    @list.unshift([item, @min_value])
+    super([item, @min_value])
   end
 
   # Removes the item on the top of the stack and returns it.
