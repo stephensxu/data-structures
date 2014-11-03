@@ -24,8 +24,8 @@ class Stack
   # O(1) time
   def pop
     raise UnderflowError, "Stack is empty" if empty?
-    @list.shift
     @size -= 1
+    @list.shift
   end
 
   # Return the item on the top of the stack without removing it
