@@ -31,9 +31,27 @@ class BinarySearchTree < BinaryTree
     end
   end
 
+  def find(value)
+    return self if self.value == value
+    if value > self.value
+      self.right ? self.right.find(value) : nil
+    else
+      self.left ? self.left.find(value) : nil
+    end
+  end
+
   def remove(value)
+    raise "#{value} is not found in this tree" unless self.include?(value)
   end
 
   def empty?
   end
 end
+
+test = BinarySearchTree.new(1)
+test.insert(2)
+test.insert(-10)
+test.insert(8)
+test.insert(99)
+p test.find(99)
+
