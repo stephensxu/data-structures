@@ -16,8 +16,8 @@ class MaxStack < Stack
 
   # Places +item+ on the top of the stack
   def push(item)
-    @max_value = [item.value.to_i, self.max_value].max
-    @list.unshift([item, @max_value])
+    @max_value = [item, self.max_value].max
+    super([item, @max_value])
   end
 
   # Removes the item on the top of the stack and returns it.
@@ -28,7 +28,7 @@ class MaxStack < Stack
 
   # Return the item on the top of the stack without removing it
   def peek
-    @list.head.value[0].value
+    @list.head.value[0]
   end
 
   # Return true if the stack is empty and false otherwise
