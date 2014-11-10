@@ -9,7 +9,7 @@ require_relative 'binary_tree'
 #   empty?              O(1) time
 
 class BinarySearchTree < BinaryTree
-  attr_reader :parent, :left, :right, :value
+  attr_accessor :parent, :left, :right, :value
 
   def initialize(value, parent=nil)
     super(value)
@@ -44,12 +44,45 @@ class BinarySearchTree < BinaryTree
 
   def remove(value)
     node = self.find(value)
-    (node.parent.left = nil && node.parent.right = nil) if (node.left == nil && node.right == nil) 
-    node.parent.left = node.left if node.left && !node.right
-    node.parent.right = node.right if node.right && !node.left
-    node
+    if (node.left == nil && node.right == nil)
+      p "leaf node being removed..."
+      p "node.parent.value is #{node.parent.value}..."
+      node.parent.left = nil
+      node.parent.right = nil
+      p "node.parent.left is #{node.parent.left}, node.parent.right is #{node.parent.left}"
+    elsif node.left && !node.right
+      p "left node being removed..."
+      node.parent.left = node.left
+    elsif node.right && !node.left
+      p "right node being removed..."
+      node.parent.right = node.right
+    end
   end
 
   def empty?
   end
 end
+
+### Test script
+
+tree = BinarySearchTree.new(5)
+tree.insert(3)
+tree.insert(8)
+tree.insert(2)
+tree.insert(1)
+tree.insert(9)
+tree.insert(7)
+tree.insert(10)
+tree.remove(2)
+tree.remove(9)
+p tree.value == 5 #==> true
+p tree.left.left.value == 1 #==> true
+p tree.right.right.value == 10 #==> true
+tree.remove(10)
+tree.remove(1)
+p tree.left.left == nil #==> false
+p tree.left.value
+p tree.right.value
+p tree.right.left.value
+p tree.right.right.value
+p tree.right.right == nil #==> false
