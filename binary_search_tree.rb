@@ -43,38 +43,13 @@ class BinarySearchTree < BinaryTree
   end
 
   def remove(value)
-    # if self.left.value == value
-    #   if self.left.left && !self.left.right
-    #     self.left = self.left.left
-    #   elsif self.left.right && !self.left.left
-    #     self.left = self.left.right
-    #   end
-    # elsif self.right.value == value
-    #   if self.right.left && !self.right.right
-    #     self.right = self.right.left
-    #   elsif self.right.right && !self.right.left
-    #     self.right = self.right.right
-    #   end
-    # end
     node = self.find(value)
-    if node.value == value
-      if node.left && !node.right
-
-      end
-    end
-
+    (node.parent.left = nil && node.parent.right = nil) if (node.left == nil && node.right == nil) 
+    node.parent.left = node.left if node.left && !node.right
+    node.parent.right = node.right if node.right && !node.left
+    node
   end
 
   def empty?
   end
 end
-
-test = BinarySearchTree.new(5)
-test.insert(3)
-test.insert(8)
-test.insert(2)
-test.insert(1)
-test.insert(9)
-test.insert(10)
-# p test
-p test.find(1).parent.value
